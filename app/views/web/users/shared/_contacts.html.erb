@@ -1,0 +1,39 @@
+<div class="ui grid">
+  <% if user.has_contacts? %>
+    <div class="sixteen wide mobile thirteen wide tablet thirteen eight wide computer column">
+      <h5 class="ui dividing header"><%= t 'template.users.contacts.social' %></h5>
+      <div class="ui large divided list">
+        <%= link_to user.vkontakte, :target => :_blank, :class => :item do %>
+            <%= icon :vk %>
+            <div class="content"><%= t 'activerecord.attributes.user.vkontakte' %></div>
+        <% end if user.vkontakte.present? %>
+        <%= link_to user.twitter, :target => :_blank, :class => :item do %>
+            <%= icon :twitter %>
+            <div class="content"><%= t 'activerecord.attributes.user.twitter' %></div>
+        <% end if user.twitter.present? %>
+        <%= link_to user.facebook, :target => :_blank, :class => :item do %>
+            <%= icon :facebook %>
+            <div class="content"><%= t 'activerecord.attributes.user.facebook' %></div>
+        <% end if user.facebook.present? %>
+        <%= link_to user.telegram, :target => :_blank, :class => :item do %>
+            <%= icon :send %>
+            <div class="content"><%= t 'activerecord.attributes.user.telegram' %></div>
+        <% end if user.telegram.present? %>
+        <%= link_to user.twitch, :target => :_blank, :class => :item do %>
+            <%= icon :twitch %>
+            <div class="content"><%= t 'activerecord.attributes.user.twitch' %></div>
+        <% end if user.twitch.present? %>
+      </div>
+    </div>
+  <% end %>
+
+  <% unless user.guardian.nil? %>
+    <div class="sixteen wide mobile thirteen wide tablet thirteen eight wide computer column">
+      <h5 class="ui dividing header"><%= t 'template.users.contacts.links' %></h5>
+      <div class="ui relaxed divided bulleted list">
+        <%= link_to t('template.users.contacts.bungie_profile'), user.bungie_profile_path, :class => :item, :target => :_blank %>
+        <%= link_to t('template.users.contacts.destiny_tracker'), user.destiny_tracker_path, :class => :item, :target => :_blank %>
+      </div>
+    </div>
+  <% end %>
+</div>

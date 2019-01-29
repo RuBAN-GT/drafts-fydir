@@ -1,0 +1,12 @@
+<div class="conversations grid">
+  <div class="ui conversations elements">
+    <%= render :partial => '/widgets/conversations/shared/conversation', :collection => @conversations, :as => :conversation %>
+  </div>
+
+  <%= will_paginate @users, :inner_window => 1 %>
+
+  <%= full_message :body => t('tips.conversations.empty',
+    :link => users_path).html_safe,
+    :class => (@conversations.any? ? 'hidden' : 'default')
+  %>
+</div>

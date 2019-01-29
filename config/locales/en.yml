@@ -1,0 +1,13 @@
+en:
+  flash:
+    error:
+      title: Error
+    info:
+      title: Information
+    success:
+      title: Success
+    warning:
+      title: Warning
+  title:
+    full: Find Your Destiny In Russia
+    short: FYDIR

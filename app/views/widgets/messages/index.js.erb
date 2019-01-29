@@ -1,0 +1,9 @@
+<% if @messages.current_page >= @messages.total_pages %>
+  messages.container().find('.more').hide().addClass('disabled');
+<% else %>
+  messages.container().find('.more.button').attr('href', '<%= widgets_conversation_messages_path(@conversation, :page => (@messages.current_page + 1)) %>');
+<% end %>
+
+<% if @messages.any? %>
+  $("<%= j render :partial => '/widgets/messages/shared/message', :collection => @messages.reverse, :as => :message %>").hide().prependTo(messages.selector()).fadeIn(400);
+<% end %>

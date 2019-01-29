@@ -1,0 +1,57 @@
+<% breadcrumb :guardian_verification, @user %>
+
+<h1 class="ui header"><%= title %></h1>
+
+<% if @user.guardian_name.present? %>
+  <% if @user.guardian_verified? %>
+    <div class="ui icon positive message">
+      <i class="protect icon"></i>
+      <div class="content">
+        <div class="header"><%= t 'flash.info.title' %></div>
+        <p><%= t('tips.users.verification.done').html_safe %></p>
+      </div>
+    </div>
+
+    <%= link_to "#{icon :search} #{t 'meta_tags.looking_requests.defaults.section'}".html_safe, looking_requests_path, :class => 'ui positive labeled icon button' %>
+  <% else %>
+      <%= form_for @user,
+        :url => user_guardian_verification_path,
+        :method => :patch,
+        :html => {:class => "ui user form", } do |form|
+      %>
+          <div class="ui icon info message">
+            <i class="protect icon"></i>
+            <div class="content">
+              <div class="header"><%= t 'flash.info.title' %></div>
+              <p><%= t('tips.users.verification.faq').html_safe %></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= form.label :guardian_token %>
+            <div class="ui left icon input">
+              <%= form.text_field :guardian_token, :disabled => true %>
+              <%= icon :key %>
+            </div>
+          </div>
+
+          <div class="ui divider"></div>
+
+          <div class="actions">
+            <%= form.button "#{icon :check} #{t 'actions.users.verify'}".html_safe, :name => 'user[action]', :value => 'check', class: "ui positive icon labeled button" %>
+          </div>
+      <% end %>
+  <% end %>
+<% else %>
+  <div class="ui warning icon message">
+    <i class="protect icon"></i>
+    <div class="content">
+      <div class="header"><%= t 'flash.warning.title' %></div>
+      <p><%= t 'users.verification.before_action' %></p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= link_to "#{icon :edit} #{t 'users.verification.set_guardian'}".html_safe, edit_user_path(@user, anchor: 'game'), :class => "ui primary labeled icon button" %>
+  </div>
+<% end %>

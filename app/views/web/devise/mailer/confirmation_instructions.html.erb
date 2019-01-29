@@ -1,0 +1,6 @@
+<% require 'devise/version' %>
+<p><%= t('devise.mailer.confirmation_instructions.greeting', :recipient => @resource.email, :default => "Welcome #{@resource.email}!") %></p>
+
+<p><%= t('devise.mailer.confirmation_instructions.instruction', :default => "You can confirm your account email through the link below:") %></p>
+<p><%= link_to t('devise.mailer.confirmation_instructions.action', :default => "Confirm my account"),
+         confirmation_url(@resource, :confirmation_token => (Devise::VERSION.start_with?('3.') ? @token : @resource.confirmation_token)) %></p>

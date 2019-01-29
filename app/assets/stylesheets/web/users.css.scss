@@ -1,0 +1,79 @@
+// users feed
+.users.items {
+  .extra {
+    .link {
+      margin-right: 0.1rem;
+    }
+    .link:last-of-type {
+      margin-right: 1.0rem;
+    }
+  }
+}
+
+.ui.avatar, .user .card .image {
+  position: relative;
+
+  .online.label {
+    position: absolute;
+    top: -0.1em;
+    right: -0.1em;
+    margin: 0;
+
+    opacity: 0.8;
+  }
+}
+.user .card .image .online.label {
+  top: 0.4em;
+  right: 0.4em;
+}
+
+.motto {
+  font-style: italic;
+  margin-bottom: 0.4em;
+}
+
+.guardian.emblems .character {
+  overflow: hidden;
+  position: relative;
+
+  min-height: 78px;
+  padding: 15px 15px 15px 66px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  background-color: gray;
+  background-size: cover;
+
+  color: #FFF;
+  font-size: 1.2em;
+
+  img.emblem, .info {
+    float: left;
+  }
+
+  img.emblem {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 56px;
+    height: 56px;
+  }
+
+  .info .class, .stats .level {
+    font-size: 1.2em;
+    margin-bottom: 0.4rem;
+  }
+
+  .stats {
+    flex: 1 0;
+    float: right;
+    text-align: right;
+
+    .light {
+      color: #F5DC56;
+    }
+  }
+}

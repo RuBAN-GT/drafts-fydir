@@ -1,0 +1,19 @@
+@media only screen and (max-width: 767px) {
+  .vertical.reversed {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    flex-direction: column-reverse;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .not.mobile {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 991px) {
+  .only.mobile {
+    display: none !important;
+  }
+}

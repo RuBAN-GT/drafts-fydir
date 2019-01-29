@@ -1,0 +1,52 @@
+<%= form_for looking_request, :html => {:class => "ui looking_request form"} do |f| %>
+    <% if LookingActivity.any? %>
+        <div class="field <%= "error" if looking_request.errors[:looking_activity].any? %>">
+          <%= f.label :looking_activity_id %>
+          <%= f.looking_activity :looking_activity_id %>
+          <%= error_resource_message looking_request, :looking_activity %>
+        </div>
+    <% end %>
+
+    <div class="two fields">
+      <div class="field <%= "error" if looking_request.errors[:platform].any? %>">
+        <%= f.label :platform_id %>
+        <%= f.platform :platform_id %>
+      </div>
+      <%= error_resource_message looking_request, :platform %>
+
+      <div class="field <%= "error" if looking_request.errors[:looking_type].any? %>">
+        <%= f.label :looking_type, t('params.looking_requests.looking_type.search.i_search') %>
+        <%= f.looking_type :looking_type %>
+        <%= error_resource_message looking_request, :looking_type %>
+      </div>
+    </div>
+
+    <div class="field <%= "error" if looking_request.errors[:description].any? %>">
+      <%= f.label :description %>
+      <%= f.text_area :description, :rows => 3, :maxlength => 1000, :placeholder => t('params.looking_requests.description.placeholder') %>
+      <%= error_resource_message looking_request, :description %>
+    </div>
+
+    <div class="ui header dividing"><%= t 'template.looking_requests.guardian' %></div>
+
+    <div class="two fields">
+      <div class="field <%= "error" if looking_request.errors[:experience].any? %>">
+        <%= f.label :experience, t('params.looking_requests.experience.placeholder') %>
+        <%= f.experience :experience %>
+      </div>
+      <%= error_resource_message looking_request, :platform %>
+
+      <div class="field <%= "error" if looking_request.errors[:looking_type].any? %>">
+        <%= f.label :min_light %>
+        <%= f.number_field  :min_light, :min => 0, :max => 400, :placeholder => t('params.looking_requests.min_light.placeholder') %>
+        <%= error_resource_message looking_request, :min_light %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="ui toggle checkbox">
+        <%= f.check_box :microphone %>
+        <%= f.label :microphone, t('params.looking_requests.microphone.placeholder') %>
+      </div>
+    </div>
+<% end %>

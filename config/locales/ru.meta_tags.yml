@@ -1,0 +1,43 @@
+ru:
+  meta_tags:
+    conversations:
+      defaults:
+        description: Онлайн-общение
+        section: Чат
+        title: Беседы
+    defaults:
+      keywords: destiny, lfg, лфг, поиск напарников
+      site: ФЁДОР
+    looking_requests:
+      defaults:
+        description: Найти напарников для Destiny
+        keywords: поиск файртимы
+        section: Поиск файртимы
+        title: Поиск групп и напарников
+      edit:
+        title: Обновление запроса
+      new:
+        title: Создание запроса
+    passwords:
+      edit:
+        title: Восстановление пароля
+      new:
+        title: Восстановление пароля
+    registrations:
+      edit:
+        title: Настройки аккаунта
+      new:
+        title: Регистрация
+    sessions:
+      new:
+        title: Вход
+    users:
+      defaults:
+        description: Пользователи Фёдора
+        keywords: гардианы, напарники
+        section: Стражи
+        title: Стражи
+      edit:
+        title: Редактировать профиль
+      guardian_verification:
+        title: Безопасность профиля

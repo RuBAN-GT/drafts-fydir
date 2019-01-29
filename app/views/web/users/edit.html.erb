@@ -1,0 +1,108 @@
+<% breadcrumb :edit_user, @user %>
+
+<h1 class="ui header"><%= t 'template.users.profile.settings' %></h1>
+
+<%= form_for @user, html: {:class => "ui user form", } do |form| %>
+  <h4 id="basic" class="ui dividing header"><%= t 'template.users.profile.basic' %></h4>
+
+  <div class="two fields">
+    <div class="field <%= "error" if @user.errors[:nickname].any? %>">
+      <%= form.label :nickname %>
+      <div class="ui left icon input">
+        <%= form.text_field :nickname, disabled: true, required: true %>
+        <%= icon :key %>
+      </div>
+      <%= error_resource_message @user, :nickname %>
+    </div>
+
+    <div class="field <%= "error" if @user.errors[:realname].any? %>">
+      <%= form.label :realname %>
+      <div class="ui left icon input">
+        <%= form.text_field :realname, placeholder: t('params.users.realname.placeholder'), required: true %>
+        <%= icon :user %>
+      </div>
+      <%= error_resource_message @user, :realname %>
+    </div>
+  </div>
+
+  <div class="field  <%= "error" if @user.errors[:motto].any? %>">
+    <%= form.label :motto %>
+    <%= form.text_area :motto, :rows => 2, :placeholder => t('params.users.motto.placeholder') %>
+    <span class="note"><%= t 'params.users.motto.length' %></span>
+    <%= error_resource_message @user, :motto %>
+  </div>
+
+  <div class="field  <%= "error" if @user.errors[:about].any? %>">
+    <%= form.label :about %>
+    <%= form.text_area :about, :rows => 4, :placeholder => t('params.users.about.placeholder') %>
+    <span class="note"><%= t 'params.users.about.length' %></span>
+    <%= error_resource_message @user, :about %>
+  </div>
+
+  <h4 id="game" class="ui dividing header"><%= t 'template.users.profile.game' %></h4>
+
+  <div class="field <%= "error" if @user.errors[:platform].any? %>">
+    <%= form.label :platform_id %>
+    <%= form.platform :platform_id %>
+    <%= error_resource_message @user, :platform %>
+  </div>
+
+  <div class="field <%= "error" if @user.errors[:guardian_name].any? %>">
+    <%= form.label :guardian_name %>
+    <div class="ui left icon input">
+      <%= form.text_field :guardian_name %>
+      <%= icon :gamepad %>
+    </div>
+    <%= error_resource_message @user, :guardian_name %>
+    <span class="note"><%= link_to t('tips.users.verification.about'), user_guardian_verification_path(@user) %></span>
+  </div>
+
+  <h4 id="contacts" class="ui dividing header"><%= t 'template.users.profile.contacts' %></h4>
+
+  <div class="field <%= "error" if @user.errors[:vkontakte].any? %>">
+    <%= form.label :vkontakte %>
+    <div class="ui left icon input">
+      <%= form.text_field :vkontakte, :placeholder => t('template.users.contacts.link') %>
+      <%= icon :vk %>
+    </div>
+    <%= error_resource_message @user, :vkontakte %>
+  </div>
+  <div class="field <%= "error" if @user.errors[:twitter].any? %>">
+    <%= form.label :twitter %>
+    <div class="ui left icon input">
+      <%= form.text_field :twitter, :placeholder => t('template.users.contacts.link') %>
+      <%= icon :twitter %>
+    </div>
+    <%= error_resource_message @user, :twitter %>
+  </div>
+  <div class="field <%= "error" if @user.errors[:facebook].any? %>">
+    <%= form.label :facebook %>
+    <div class="ui left icon input">
+      <%= form.text_field :facebook, :placeholder => t('template.users.contacts.link') %>
+      <%= icon :facebook %>
+    </div>
+    <%= error_resource_message @user, :facebook %>
+  </div>
+  <div class="field <%= "error" if @user.errors[:telegram].any? %>">
+    <%= form.label :telegram %>
+    <div class="ui left icon input">
+      <%= form.text_field :telegram, :placeholder => t('template.users.contacts.link') %>
+      <%= icon :send %>
+    </div>
+    <%= error_resource_message @user, :telegram %>
+  </div>
+  <div class="field <%= "error" if @user.errors[:twitch].any? %>">
+    <%= form.label :twitch %>
+    <div class="ui left icon input">
+      <%= form.text_field :twitch, :placeholder => t('template.users.contacts.link') %>
+      <%= icon :twitch %>
+    </div>
+    <%= error_resource_message @user, :twitch %>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div class="actions">
+    <%= form.button "#{icon :save} #{t 'actions.save'}".html_safe, class: "ui primary icon labeled button" %>
+  </div>
+<% end %>

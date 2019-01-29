@@ -1,0 +1,71 @@
+<% breadcrumb :sign_up %>
+
+<h1 class="ui header"><%= title %></h1>
+
+<%= form_for resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "ui form"} do |f| %>
+    <h4 class="ui dividing header"><%= t 'template.users.profile.basic' %></h4>
+
+    <div class="field <%= "error" if resource.errors[:email].any? %>">
+      <%= f.label :email %>
+      <div class="ui left icon input">
+        <%= f.email_field :email, required: true, :placeholder => t('params.users.email.placeholder') %>
+        <%= icon :mail %>
+      </div>
+      <%= error_resource_message resource, :email %>
+    </div>
+
+    <div class="field <%= "error" if resource.errors[:nickname].any? %>">
+      <%= f.label :nickname %>
+      <div class="ui left icon input">
+        <%= f.text_field :nickname, placeholder: t('params.users.nickname.placeholder'), required: true %>
+        <%= icon :key %>
+      </div>
+      <%= error_resource_message resource, :nickname %>
+      <span class="note"><%= t 'tips.users.nickname' %></span>
+    </div>
+
+    <div class="field <%= "error" if resource.errors[:realname].any? %>">
+      <%= f.label :realname %>
+      <div class="ui left icon input">
+        <%= f.text_field :realname, placeholder: t('params.users.realname.placeholder'), required: true %>
+        <%= icon :user %>
+      </div>
+      <%= error_resource_message resource, :realname %>
+    </div>
+
+    <div class="two fields">
+      <div class="field <%= "error" if resource.errors[:password].any? %>">
+        <%= f.label :password %>
+        <%= f.password_field :password, required: true %>
+        <%= error_resource_message resource, :password %>
+      </div>
+
+      <div class="field <%= "error" if resource.errors[:password_confirmation].any? %>">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, required: true %>
+        <%= error_resource_message resource, :password_confirmation %>
+      </div>
+    </div>
+
+    <h4 class="ui dividing header"><%= t 'template.users.profile.game' %></h4>
+
+    <div class="field <%= "error" if resource.errors[:platform].any? %>">
+      <%= f.label :platform_id %>
+      <%= f.platform :platform_id %>
+      <%= error_resource_message resource, :platform %>
+    </div>
+
+    <div class="field <%= "error" if resource.errors[:guardian_name].any? %>">
+      <%= f.label :guardian_name %>
+      <div class="ui left icon input">
+        <%= f.text_field :guardian_name, placeholder: t("activerecord.attributes.user.guardian_name") %>
+        <%= icon :gamepad %>
+      </div>
+      <%= error_resource_message resource, :guardian_name %>
+      <span class="note"><%= t 'tips.users.verification.about' %></span>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <%= f.button "#{icon 'arrow right'} #{t('devise.registrations.new.sign_up', :default => "Sign up")}".html_safe, :class => "ui primary labeled icon button" %>
+<% end %>

@@ -1,0 +1,33 @@
+<div class="ui main left vertical sidebar inverted menu">
+  <nav class="ui container">
+    <% if user_signed_in? %>
+      <div class="user header item">
+        <%= image_tag current_user.avatar, :class => "ui avatar image" %>
+        <%= truncate current_user.nickname, :length => 24 %>
+        <div class="ui dropdown pointing top right">
+          <div class="ui link"><%= icon 'ellipsis vertical large' %></div>
+          <div class="menu">
+            <%= link_to "#{icon :dashboard} #{t 'template.admin'}".html_safe, rails_admin_path, :class => :item if can? :access, :rails_admin %>
+
+            <%= active_link_to "#{icon :user} #{t 'template.users.profile.section'}".html_safe, user_path(current_user), :class => :item %>
+
+            <%= active_link_to "#{icon :setting} #{t 'template.settings'}".html_safe, edit_user_path(current_user), :class => :item %>
+
+            <%= link_to "#{icon 'sign out'} #{t 'actions.sign_out'}".html_safe, destroy_user_session_path, :class => :item, :method => :delete %>
+          </div>
+        </div>
+      </div>
+
+      <%= link_to "#{icon :mail} #{unread_label} #{t 'meta_tags.conversations.defaults.section'}".html_safe, widgets_conversations_path, :class => :item %>
+    <% end %>
+
+    <%= active_link_to "#{icon :search} #{t 'meta_tags.looking_requests.defaults.section'}".html_safe, looking_requests_path, :class => :item %>
+
+    <%= active_link_to "#{icon :users} #{t 'meta_tags.users.defaults.section'}".html_safe, users_path, :class => :item %>
+
+    <% unless user_signed_in? %>
+      <%= link_to t('actions.sign_in'), new_user_session_path, :class => :item %>
+      <%= link_to t('actions.sign_up'), new_user_registration_path, :class => :item %>
+    <% end %>
+  </nav>
+</div>

@@ -1,0 +1,8 @@
+ru:
+  template:
+    looking_activities:
+      all: Все активности
+      choice: Выберете активность
+      every: Любая активность
+      item: Активность
+      section: Активности

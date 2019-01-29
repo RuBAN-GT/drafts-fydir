@@ -1,0 +1,25 @@
+<% title @conversation.title(current_user.id) %>
+
+<div class="conversation" data-conversation="<%= @conversation.id %>">
+  <% if @messages.current_page < @messages.total_pages %>
+      <div class="ui basic center aligned nopadded more segment">
+        <%=
+          link_to "#{icon :refresh} #{t 'actions.messages.more'}".html_safe,
+            widgets_conversation_messages_path(
+              @conversation,
+              :page => (@messages.current_page + 1)
+            ),
+            :remote => true,
+            :class => 'ui loads small more icon labeled mobile only button'
+        %>
+      </div>
+  <% end %>
+
+  <div class="messages">
+    <%= render :partial => '/widgets/messages/shared/message', :collection => @messages.reverse, :as => :message %>
+  </div>
+
+  <%= full_message :body => t('tips.messages.empty') unless @messages.any? %>
+</div>
+
+<%= render '/widgets/messages/shared/textbox', :conversation => @conversation, :message => @message %>

@@ -1,0 +1,43 @@
+.widgets_messages {
+  .ui.wrapper {
+    bottom: 40px;
+  }
+}
+
+.messages {
+  .message {
+    display: flex;
+    margin-bottom: 1rem;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    &.current {
+      justify-content: flex-end;
+
+      .text {
+        background-color: #d7dee9;
+      }
+    }
+    &.system {
+      display: block;
+
+      font-weight: bold;
+      text-align: center;
+
+      color: rgb(102, 102, 102);
+    }
+
+    .content {
+      margin-left: 0.5rem;
+    }
+
+    .text {
+      padding: 0.5em 0.8em;
+      margin-bottom: 0.1rem;
+    }
+    .meta {
+      color: rgb(121, 121, 121);
+      font-size: 0.8em;
+    }
+  }
+}

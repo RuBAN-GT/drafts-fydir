@@ -1,0 +1,27 @@
+.looking_requests {
+  &.feed {
+    .request.event {
+      .content .extra.text {
+        max-width: none;
+      }
+    }
+  }
+  &.table {
+    .header {
+      .labels {
+        display: inline-block;
+
+        .label:last-of-type {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .looking_requests .actions .play {
+    float: none;
+    margin: 0.5em 0 0 0;
+  }
+}

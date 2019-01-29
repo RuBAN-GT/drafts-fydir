@@ -1,0 +1,16 @@
+<div class="toolbar">
+  <% unless params[:action] == 'index' && params[:controller] == 'widgets/conversations' %>
+    <%= link_to icon('chevron left'),
+      widgets_conversations_path,
+      :class => "back element",
+      :title => t('actions.conversations.to_index')
+    %>
+  <% end %>
+
+  <div class="title"><%= title %></div>
+
+  <div class="element actions">
+    <span class="toggle link" title="<%= t 'actions.conversations.toggle' %>"><i class="minus icon"></i></span>
+    <%= link_to icon(:close), root_path, :class => 'close link', :title => t('actions.conversations.close') %>
+  </div>
+</div>

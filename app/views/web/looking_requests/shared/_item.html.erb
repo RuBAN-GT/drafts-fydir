@@ -1,0 +1,27 @@
+<div data-id="<%= looking_request.id %>" class="looking_request item">
+  <div class="content">
+    <h5 class="ui header">
+      <%= link_to "#{looking_request.title} (#{looking_request.looking_type_name})",
+        looking_request_path(looking_request),
+        :remote => true,
+        :class => 'loads'
+      %>
+
+      <div class="ui labels">
+        <%= experience_label looking_request.experience %>
+        <%= min_light_label looking_request.min_light unless looking_request.min_light.nil? %>
+      </div>
+    </h5>
+
+    <%= content_tag :div,
+      looking_request.description,
+      :class => :description if looking_request.description.present?
+    %>
+
+    <div class="ui extra labels">
+      <%= user_mini_label looking_request.user %>
+      <%= platform_label looking_request.platform %>
+      <%= microphone_label looking_request.microphone %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="ui fixed <%= !!defined?(classes) ? classes : '' %> inverted main menu">
+  <nav class="ui container">
+    <%= content_tag :span, "#{icon :bars}".html_safe, :title => t('template.sidebar_toggle'), :class => 'item sidebar link switcher only mobile' %>
+
+    <%= link_to "<i class='destiny left logo'></i> #{t('title.short')}".html_safe, root_path, :title => t('title.full'), :class => "header item" %>
+
+    <div class="left menu not mobile">
+      <%= active_link_to t('meta_tags.looking_requests.defaults.section'), looking_requests_path, :class => :item %>
+
+      <%= active_link_to t('meta_tags.users.defaults.section'), users_path, :class => :item %>
+    </div>
+
+    <div class="right menu not mobile">
+      <%= link_to "#{icon :mail} #{unread_label}".html_safe,
+        conversations_path,
+        :class => 'chatbox item',
+        :remote => true,
+        :title => t('meta_tags.conversations.defaults.section') if user_signed_in?
+      %>
+
+      <% if user_signed_in? %>
+        <div class="ui pointing dropdown item">
+
+          <%= image_tag current_user.avatar, :class => "ui avatar image" %>
+          <%= truncate current_user.nickname, :length => 24 %>
+
+          <i class="dropdown icon"></i>
+
+          <div class="menu">
+            <%= link_to "#{icon :dashboard} #{t 'template.admin'}".html_safe, rails_admin_path, :class => :item if can? :access, :rails_admin %>
+
+            <%= active_link_to "#{icon :user} #{t 'template.users.profile.section'}".html_safe, user_path(current_user), :class => :item %>
+
+            <%= active_link_to "#{icon :setting} #{t 'template.settings'}".html_safe, edit_user_path(current_user), :class => :item %>
+
+            <%= link_to "#{icon 'sign out'} #{t 'actions.sign_out'}".html_safe, destroy_user_session_path, :class => :item, :method => :delete %>
+          </div>
+        </div>
+      <% else %>
+        <%= link_to t('actions.sign_in'), new_user_session_path, :class => :item %>
+
+        <%= link_to t('actions.sign_up'), new_user_registration_path, :class => :item %>
+      <% end %>
+    </div>
+  </nav>
+</div>

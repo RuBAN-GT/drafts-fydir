@@ -1,0 +1,14 @@
+ru:
+  actions:
+    messages:
+      more: Больше
+      send: Отправить
+  errors:
+    messages:
+      subscription: Пользователь должен состоять в беседе.
+  template:
+    messages:
+  tips:
+    messages:
+      empty: Беседа пуста, почему бы не написать самому "Привет"?
+      press: Наберите ваше сообщение...

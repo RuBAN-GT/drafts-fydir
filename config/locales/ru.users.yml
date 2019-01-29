@@ -1,0 +1,118 @@
+ru:
+  actions:
+    users:
+      verify: Проверить аккаунт
+  activerecord:
+    attributes:
+      user:
+        about: Обо мне
+        account: Аккаунт
+        created_at: Зарегистрирован
+        email: Email
+        facebook: Facebook
+        guardian_name: Игровое имя
+        guardian_token: Код подтверждения
+        last_active_at: Последний раз в сети
+        motto: Девиз
+        nickname: Ник
+        platform: Плафторма
+        platform_id: Плафторма
+        realname: Имя
+        telegram: Telegram
+        twitch: Twitch
+        twitter: Twitter
+        vkontakte: ВКонтакте
+    errors:
+      models:
+        user:
+          attributes:
+            contact:
+              wrong: с неверной ссылкой
+            guardian_name:
+              email: требует указания e-mail
+              later: не может быть проверен сейчас, попробуйте позже
+              platform: требует выбранную платформу
+              used: занят другим пользователем
+              wrong: неверный
+  errors:
+    users:
+      guardian:
+        email: нельзя установить. Перед указанием имени гардиана необходимо указать Email.
+        platform: нельзя установить. Перед указанием имени гардиана необходимо выбрать платформу.
+        used: уже занято.
+        wrong: невозможно проверить, или же оно не существует, попробуйте позже.
+  flash:
+    users:
+      before_action: Для верификации сначала необходимо указать игровое имя.
+      created: Профиль создан.
+      destroyed: Профиль удалён.
+      profile_error: Ошибка обновления профиля, проверьте правильность заполненных полей.
+      update_limit: Профиль можно обновлять один раз в 30 минут.
+      updated: Профиль обновлён.
+      verify_success: Ваш геймертег успешно закреплен за вашим аккаунтом.
+      verify_wrong: Проверьте код статуса ещё раз.\
+  params:
+    users:
+      about:
+        length: Максимальная длина текста о вас не может превышать 400 символов.
+        placeholder: Личная информация о вас.
+      email:
+        placeholder: Контактная почта
+      motto:
+        length: Максимальная длина текста с девизом не может превышать 100 символов.
+        placeholder: Девиз вашего гардиана, например, вайпнулся, но ультонул...
+      nickname:
+        placeholder: Придуманное имя
+      ratio:
+        total: Общий рейтинг
+        voted: "проголосовало %{ratio}"
+      realname:
+        placeholder: Реальное имя
+  template:
+    users:
+      about:
+        requests: Запросов
+        section: Обо мне
+      contacts:
+        bungie_profile: Профиль Bungie
+        destiny_tracker: Destiny Tracker
+        link: Ссылка
+        links: Ссылки
+        section: Контакты
+        social: Социальные сети
+      profile:
+        basic: Общая информация
+        contacts: Контакты
+        game: Игровой профиль
+        section: Профиль
+        settings: Настройки профиля
+      send_message: Написать
+      statistics:
+        grimoire: Гримуар
+        max_light: Максимальный лайт
+        pve_kd: PvE КД
+        pve_time: Время в PvE
+        pvp_kd: PvP КД
+        pvp_time: Время в PvP
+        section: Статистика
+        total_time: Общее время игры
+      time_ago: "%{time} назад"
+  tips:
+    users:
+      light: Уровень света
+      nickname: Ваше имя на сайте, состоящие из латинских букв, цифр и некоторых символов (_-).
+      online:
+        offline: Пользователь не в сети
+        online: Пользователь в сети
+      send_message: Написать сообщение
+      show_character: Показать персонажа
+      show_profile: Показать профиль
+      show_requests: Посмотреть запросы
+      update_statistics: Обновить статистику
+      verification:
+        about: Данное имя уникально для PSN или Xbox Live. Вы сможете подтвердить его на странице безопасности.
+        done: Ваш профиль уже подтверждён и Имя гардиана закреплено за вами, начните искать напарников уже сейчас!
+        faq: Для того, чтобы подтвердить свой профиль, необходимо на сайте <a href="https://www.bungie.net/" target="_blank">Bungie</a> обновить статус своего профиля кодом, указанным ниже, и нажать кнопку "Подтвердить".
+        unverified: Неподтверждённый аккаунт
+        verified: Подтверждённый аккаунт
+      vote: Проголосовать за пользователя

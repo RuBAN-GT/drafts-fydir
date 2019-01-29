@@ -1,0 +1,40 @@
+<table class="ui very basic celled selectable table">
+  <tr>
+    <td class="collapsing"><%= t 'activerecord.attributes.user.realname' %></td>
+    <td><%= user.realname %></td>
+  </tr>
+  <tr>
+    <td class="collapsing"><%= t 'activerecord.attributes.user.created_at' %></td>
+    <td><%= user.created_at.strftime '%d/%m/%Y' %></td>
+  </tr>
+  <% if user.last_active_at.present? %>
+    <tr>
+      <td class="collapsing"><%= t 'activerecord.attributes.user.last_active_at' %></td>
+      <td><%= t 'template.users.time_ago', :time => time_ago_in_words(user.last_active_at) %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td class="collapsing"><%= t 'template.users.about.requests' %></td>
+    <td>
+      <% if user.looking_requests.count > 0 %>
+          <%= link_to user.looking_requests.count,
+            looking_requests_path(:user => user.nickname),
+            :title => t('tips.users.show_requests'),
+            :tooltip => true,
+            :target => :_blank
+          %>
+      <% else %>
+          0
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td class="collapsing"><%= t 'params.users.ratio.total' %></td>
+    <td class="top aligned">
+      <%= user_ratio @user %>
+      <em>(<%= t 'params.users.ratio.voted', :ratio => @user.user_ratios.length %>)</em>
+    </td>
+  </tr>
+</table>
+
+<%= content_tag :p, user.about if user.about.present? %>

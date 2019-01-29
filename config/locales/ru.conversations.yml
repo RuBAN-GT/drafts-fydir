@@ -1,0 +1,25 @@
+ru:
+  actions:
+    conversations:
+      close: Закрыть чат
+      leave: Выйти из беседы
+      to_index: К беседам
+      toggle: Свернуть чат
+  errors:
+    conversations:
+      exists: Беседа уже существует
+      little: Беседа не может быть пустой или состоять из одного участника
+      many_users: Беседа не может содержать больше 6 участников.
+      repeat_users: Имеются повторяющиеся пользователи.
+  flash:
+    conversations:
+  params:
+    conversations:
+  template:
+    conversations:
+  tips:
+    conversations:
+      empty: Вы ещё ни с кем не общались, <a href="%{link}">начните прямо сейчас</a>!
+      unread: Количество непрочитанных бесед
+      join: "%{username} присоединился к беседе"
+      leave: "%{username} вышел из беседы"

@@ -1,0 +1,39 @@
+// Menu
+.main.menu {
+  min-height: 50px;
+
+  &.fixed {
+    z-index: 900 !important;
+
+    .header.item {
+      font-family: 'Futurist Fixed-width', 'Orbitron', sans-serif;
+    }
+  }
+
+  img.avatar {
+    margin-right: 0.65em;
+    width: 1.7em;
+    height: 1.7em;
+  }
+}
+
+.main.menu.sidebar {
+  .user.header {
+    .dropdown.right {
+      float: right;
+    }
+  }
+}
+
+// Container
+
+.main.container {
+  padding-top: 5em;
+  padding-bottom: 6em;
+  > .ui.header {
+    margin-top: 0;
+  }
+  > .ui.breadcrumb {
+    margin-bottom: 2rem;
+  }
+}

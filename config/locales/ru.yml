@@ -1,0 +1,38 @@
+ru:
+  actions:
+    choice: Выберете
+    clear: Сбросить
+    delete: Удалить
+    edit: Редактивровать
+    save: Сохранить
+    search: Найти
+    sign_in: Вход
+    sign_out: Выход
+    sign_up: Регистрация
+  flash:
+    error:
+      title: Ошибка
+    info:
+      title: Информация
+    success:
+      title: Успех
+    warning:
+      title: Внимание
+  template:
+    admin: Админ-панель
+    basic: Основное
+    empty: Пусто
+    filter: Фильтр
+    get_started: Найти напарников!
+    help: Помощь
+    home: Главная
+    info: Информация
+    info: Информация
+    or: или
+    settings: Настройки
+    sidebar_toggle: Показать меню
+    statistics: Статистика
+    unknown: Неизвестно
+  title:
+    full: Find your Destiny in Russia
+    short: FYDIR

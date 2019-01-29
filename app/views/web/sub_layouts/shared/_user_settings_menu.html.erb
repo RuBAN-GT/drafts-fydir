@@ -1,0 +1,7 @@
+<div class="ui vertical fluid menu">
+  <div class="header item"><%= t 'template.settings' %></div>
+
+  <%= active_link_to t('template.users.profile.settings'), edit_user_path(current_user), :class => :item %>
+  <%= active_link_to t('meta_tags.users.guardian_verification.title'), user_guardian_verification_path(current_user), :class => :item %>
+  <%= active_link_to t('meta_tags.registrations.edit.title'), edit_user_registration_path, :class => :item %>
+</div>

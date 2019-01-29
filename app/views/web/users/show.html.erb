@@ -1,0 +1,63 @@
+<% breadcrumb :user, @user %>
+
+<div class="ui user grid">
+  <div class="sixteen wide mobile three wide tablet three wide computer column avatar">
+    <div class="ui centered card">
+      <div class="image">
+        <%= image_tag @user.avatar, :class => "ui centered rounded image" %>
+        <%= online_label @user %>
+      </div>
+    </div>
+
+    <%=
+      link_to "#{icon('mail outline')} #{t 'template.users.send_message'}".html_safe,
+        conversations_path(:conversation => { :users => [@user.nickname] }),
+        :class => 'ui button teal icon labeled fluid start conversation',
+        :method => :post,
+        :remote => true if user_signed_in? && !is_current?(@user)
+    %>
+  </div>
+
+  <div class="sixteen wide mobile thirteen wide tablet thirteen wide computer column information">
+    <h1 class="ui header">
+      <%= @user.nickname %>
+      <%= user_voted_ratio @user %>
+    </h1>
+
+    <div class="meta">
+      <%= content_tag :p, @user.motto, :class => :motto if @user.motto.present? %>
+      <%= guardian_label @user %>
+      <%= platform_label @user.platform unless @user.platform.nil? %>
+    </div>
+
+    <div class="ui info">
+      <div class="ui hidden divider"></div>
+      <div class="ui pointing secondary tabs menu">
+        <a class="active item" data-tab="about"><%= t 'template.users.about.section' %></a>
+        <% unless @user.guardian.nil? %>
+            <div class="item" data-tab="statistics">
+              <span class="ui link"><%= t 'template.users.statistics.section' %></span>
+              &nbsp;
+              <%= link_to "#{icon 'refresh small'}".html_safe, user_guardian_path(@user), :title => t('tips.users.update_statistics'), :tooltip => true, :method => :patch if is_current?(@user) %>
+            </div>
+        <% end %>
+        <% if @user.has_contacts? || !@user.guardian.nil? %>
+            <a class="item" data-tab="contacts"><%= t 'template.users.contacts.section' %></a>
+        <% end %>
+      </div>
+      <div class="ui active tab basic segment" data-tab="about">
+        <%= render '/web/users/shared/about', :user => @user %>
+      </div>
+      <% unless @user.guardian.nil? %>
+          <div class="ui tab basic segment" data-tab="statistics">
+            <%= render '/web/users/shared/statistics', :user => @user %>
+          </div>
+      <% end %>
+      <% if @user.has_contacts? || !@user.guardian.nil? %>
+          <div class="ui tab basic segment" data-tab="contacts">
+            <%= render '/web/users/shared/contacts', :user => @user %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

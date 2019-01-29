@@ -1,0 +1,72 @@
+<div
+  class="ui modal looking_request show"
+  data-id="<%= @looking_request.id %>"
+  data-root-url="<%= looking_requests_path %>"
+  data-target-url="<%= looking_request_path(@looking_request) %>"
+  data-target-title="<%= display_title %>"
+>
+  <%= icon(:close) %>
+  <div class="header">
+    <span>
+      <%= @looking_request.title %>
+    </span>
+    <div class="ui labels">
+      <%= experience_label @looking_request.experience unless @looking_request.experience.nil? %>
+      <%= min_light_label @looking_request.min_light %>
+    </div>
+  </div>
+
+  <div class="content">
+    <table class="ui selectable very basic table">
+      <tbody>
+        <tr>
+          <td class="collapsing"><%= t 'activerecord.attributes.looking_request.created_at' %></td>
+          <td><%= @looking_request.created_at.strftime('%H:%M (%m-%d-%Y)') %></td>
+        </tr>
+        <tr>
+          <td class="collapsing"><%= t 'activerecord.attributes.looking_request.looking_activity' %></td>
+          <td><%= looking_activity_link @looking_request.looking_activity %></td>
+        </tr>
+        <tr>
+          <td class="collapsing"><%= t 'activerecord.attributes.looking_request.looking_type' %></td>
+          <td><%= @looking_request.looking_type_name %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <% if @looking_request.description.present? %>
+        <div class="description">
+          <h3 class="ui dividing header"><%= t 'template.info' %></h3>
+          <p><%= @looking_request.description %></p>
+        </div>
+
+        <div class="ui hidden divider"></div>
+    <% end %>
+
+    <div class="ui extra labels">
+      <%= user_label @looking_request.user %>
+      <%= platform_label @looking_request.platform %>
+      <%= microphone_label @looking_request.microphone %>
+    </div>
+  </div>
+
+  <% if is_current? @looking_request.user %>
+      <div class="actions">
+        <%= link_to "#{icon :trash} #{t 'actions.delete'}".html_safe,
+          looking_request_path(@looking_request),
+          :class => 'ui negative button icon labeled',
+          :method => :delete,
+          :remote => true,
+          :data => {
+            :confirm => true,
+            :backurl => looking_requests_path
+          }
+        %>
+        <%= link_to "#{icon :edit} #{t 'actions.edit'}".html_safe,
+          edit_looking_request_path(@looking_request),
+          :class => 'ui loads positive button icon labeled',
+          :remote => true
+        %>
+      </div>
+  <% end %>
+</div>

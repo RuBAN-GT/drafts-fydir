@@ -1,0 +1,27 @@
+<div
+  class="ui modal looking_request edit"
+  data-id="<%= @looking_request.id %>"
+  data-root-url="<%= looking_requests_path %>"
+  data-target-url="<%= edit_looking_request_path(@looking_request) %>"
+  data-target-title="<%= display_title %>"
+>
+  <%= link_to icon(:close), looking_requests_path, :class => :close %>
+  <div class="header"><%= t 'meta_tags.looking_requests.edit.title' %></div>
+
+  <div class="content">
+    <%= render '/web/looking_requests/shared/form', looking_request: @looking_request %>
+  </div>
+
+  <div class="ui actions">
+    <%= link_to "#{icon :trash} #{t 'actions.delete'}".html_safe,
+      looking_request_path(@looking_request),
+      :method => :delete,
+      :remote => true,
+      :data => { :confirm => true },
+      :class => "ui negative icon labeled button"
+    %>
+    <%= button_tag "#{icon :save} #{t 'actions.save'}".html_safe,
+      :class => "ui primary green icon labeled button"
+    %>
+  </div>
+</div>

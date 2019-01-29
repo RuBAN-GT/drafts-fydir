@@ -1,0 +1,76 @@
+<% breadcrumb :looking_requests %>
+
+<div class="ui mobile vertical reversed looking_requests grid">
+    <div class="sixteen wide mobile sixteen wide tablet eleven wide computer column stickowner">
+        <h1 class="ui header">
+          <%= t 'meta_tags.looking_requests.defaults.title' %>
+        </h1>
+
+        <div class="actions">
+            <%= link_to "#{icon(:plus)} #{t 'actions.looking_requests.new'}".html_safe,
+              new_looking_request_path,
+              :class => "ui loads primary icon labeled button",
+              :remote => true
+            %>
+
+            <% if request.query_parameters.empty? %>
+              <div class="ui hidden icon play right floated labeled button"
+                title="<%= t 'tips.looking_requests.feed.stop' %>"
+                tooltip="true"
+                data-status="play">
+                  <%= icon :pause %>
+                  <%= t 'actions.looking_requests.feed.stop' %>
+              </div>
+              <div class="ui hidden icon play right floated labeled button"
+                title="<%= t 'tips.looking_requests.feed.start' %>"
+                tooltip="true"
+                data-status="pause">
+                  <%= icon :play %>
+                  <%= t 'actions.looking_requests.feed.start' %>
+              </div>
+            <% end %>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <div class="ui looking_requests divided items">
+          <%= render :partial => '/web/looking_requests/shared/item',
+            :collection => @looking_requests,
+            :as => :looking_request
+          %>
+        </div>
+
+        <% if @looking_requests.current_page < @looking_requests.total_pages %>
+          <div class="ui basic center aligned nopadded more segment">
+            <div class="ui divider"></div>
+            <%=
+              link_to "#{icon :refresh} Больше".html_safe,
+                looking_requests_path(
+                  :page => (@looking_requests.current_page + 1)
+                ),
+                :remote => true,
+                :class => 'ui loads large teal more icon labeled button'
+            %>
+          </div>
+        <% end %>
+        <div class="ui empty icon message <%= 'hidden' if @looking_requests.any? %>">
+            <i class="archive icon"></i>
+            <div class="content">
+                <h4 class="ui header"><%= t "template.empty" %></h4>
+                <p><%= t 'template.looking_requests.empty' %></p>
+            </div>
+        </div>
+    </div>
+    <div class="sixteen wide mobile sixteen wide tablet five wide computer column">
+        <div class="ui not mobile sticky">
+            <%= render '/web/looking_requests/shared/filter' %>
+        </div>
+        <div class="ui only mobile">
+            <%= render '/web/looking_requests/shared/filter' %>
+        </div>
+    </div>
+</div>
+
+<%= render :template => "/web/looking_requests/#{modal}" if defined? modal %>
+
+<%= javascript_include_tag 'web/targets/channels/looking_requests', 'data-turbolinks-track': 'reload' %>

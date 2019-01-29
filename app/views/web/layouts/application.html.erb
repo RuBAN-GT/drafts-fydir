@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= display_meta_tags %>
+  <%= csrf_meta_tags %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= render '/web/layouts/shared/locales' %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'web/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'web/application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body
+  class="<%= controller_classes %> pushable"
+  data-nickname="<%= current_user.nickname if user_signed_in? %>"
+>
+  <%= render "/web/layouts/shared/sidebar" %>
+
+  <div class="pusher">
+    <%= render "/web/layouts/shared/navigation" %>
+
+    <div class="ui main container">
+      <% breadcrumbs.tap do |links| %>
+          <% if links.any? %>
+              <div class="ui breadcrumb">
+                <%= links.map { |link|
+                  if link.current?
+                    content_tag :span, link.text, :class => "active section"
+                  else
+                    link_to link.text, link.url, :class => "section"
+                  end
+                }.join('<i class="right chevron icon divider"></i>').html_safe
+                %>
+              </div>
+          <% end %>
+      <% end %>
+
+      <%= sub_layout.blank? ? yield : render(:file => "/web/sub_layouts/#{sub_layout}") %>
+    </div>
+  </div>
+
+  <div id="flash"><%= flash_all %></div>
+
+  <%= target_scripts %>
+</body>
+</html>

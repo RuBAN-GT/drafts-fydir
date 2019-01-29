@@ -1,0 +1,20 @@
+<% if message.user.nil? %>
+  <div data-id="<%= message.id %>" class="message system">
+    <p><%= message.body %></p>
+  </div>
+<% else %>
+  <div data-id="<%= message.id %>" class="message <%= message.user == current_user ? "current" : "other" %>">
+    <%= link_to image_tag(message.user.avatar), user_path(message.user), :class => "ui avatar image" unless message.user == current_user %>
+
+    <div class="content">
+      <div class="ui segment text">
+        <%= message.body %>
+      </div>
+      <div class="meta">
+        <%= link_to message.user.nickname, user_path(message.user), :class => :user unless message.user == current_user %>
+
+        <span class="date"><%= message.created_at.strftime('%Y.%m.%d %H:%M:%S') %></span>
+      </div>
+    </div>
+  </div>
+<% end %>

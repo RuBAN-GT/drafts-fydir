@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= display_meta_tags %>
+  <%= csrf_meta_tags %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= render '/web/layouts/shared/locales' %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'web/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'web/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'web/application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body
+class="<%= params[:controller].gsub('/', '_') %> home pushable"
+data-nickname="<%= current_user.nickname if user_signed_in? %>"
+>
+  <%= render "/web/layouts/shared/sidebar" %>
+
+  <div class="pusher">
+    <div id="flash"><%= flash_all %></div>
+
+    <%= render "/web/layouts/shared/navigation", :classes => "transparent" %>
+
+    <div class="ui main branding">
+      <div class="ui container">
+        <div class="ui huge inverted header">
+          <span class="short title">
+            <i class="destiny left logo"></i><%= t 'title.short' %>
+          </span>
+          <span class="description title"><%= t 'title.full' %></span>
+        </div>
+        <div class="ui actions">
+          <% if user_signed_in? %>
+              <%= link_to t('template.get_started'), looking_requests_path, :class => 'ui huge inverted button' %>
+          <% else %>
+              <%= link_to t('actions.sign_in'), new_user_session_path, :class => 'ui huge inverted button' %>
+
+              <%= link_to t('actions.sign_up'), new_user_registration_path, :class => 'ui huge inverted button' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui main container">
+      <% if LookingRequest.exists? %>
+        <h2 class="ui center aligned header"><%= t 'template.looking_requests.last' %></h2>
+        <%= render 'web/looking_requests/shared/items', :looking_requests => LookingRequest.limit(10) %>
+      <% else %>
+          <div class="ui empty icon message">
+            <i class="archive icon"></i>
+            <div class="content">
+              <h4 class="ui header"><%= t "template.empty" %></h4>
+              <p><%= t 'template.looking_requests.empty' %></p>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= javascript_include_tag 'web/targets/channels/looking_requests', 'data-turbolinks-track': 'reload' %>
+
+  <%= target_scripts %>
+</body>
+</html>

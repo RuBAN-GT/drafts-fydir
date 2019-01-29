@@ -1,0 +1,12 @@
+<% if @looking_requests.current_page >= @looking_requests.total_pages %>
+  looking_requests.container().find('.more').hide();
+<% else %>
+  looking_requests.container().find('.more.button')
+  .attr('href', '<%= looking_requests_path(:page => (@looking_requests.current_page + 1)) %>');
+<% end %>
+
+<% if @looking_requests.any? %>
+  $("<%= j render :partial => 'web/looking_requests/shared/item', :collection => @looking_requests, :as => :looking_request %>")
+  .hide()
+  .appendTo(looking_requests.selector()).fadeIn(400);
+<% end %>

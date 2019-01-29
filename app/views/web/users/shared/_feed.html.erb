@@ -1,0 +1,30 @@
+<div class="ui relaxed users items">
+  <% users.each do |user| %>
+    <div class="item">
+      <%= link_to user_path(user), class: "ui mini avatar image" do %>
+          <%= image_tag user.avatar %>
+          <%= online_label user %>
+      <% end %>
+      <div class="content">
+        <div class="header">
+          <%= link_to user.nickname, user_path(user), :class => :user_link %>
+
+          <%= guardian_light user %>
+        </div>
+
+        <div class="description">
+          <%= content_tag :p, user.motto, :class => :motto unless user.motto.blank? %>
+
+          <%= guardian_label user if user.guardian_name.present? %>
+          <%= platform_label user.platform if user.platform.present? %>
+        </div>
+
+        <div class="extra">
+          <%= start_conversation_link user %>
+
+          <%= user_ratio user %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<% breadcrumb :new_password %>
+
+<h1 class="ui header"><%= t 'devise.passwords.new.forgot_your_password' %></h1>
+
+<%= form_for resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, :class => "ui form"} do |f| %>
+    <div class="field <%= "error" if resource.errors[:email].any? %>">
+      <%= f.label :email %>
+      <div class="ui left icon input">
+        <%= f.email_field :email, placeholder: t('activerecord.attributes.user.email'), required: true, autofocus: true %>
+        <%= icon :mail %>
+      </div>
+      <%= error_resource_message resource, :email %>
+    </div>
+
+    <%= f.button "#{icon 'arrow right'} #{t 'devise.passwords.new.send_me_reset_password_instructions'}".html_safe, :class => "ui primary labeled icon button" %>
+<% end %>

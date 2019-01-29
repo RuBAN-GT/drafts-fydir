@@ -1,0 +1,40 @@
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+
+  height: 40px;
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+
+  background: #4c545e;
+  color: #FFF;
+  overflow: hidden;
+
+  border-radius: 3px 3px 0 0;
+
+  a {
+    color: #FFF;
+  }
+
+  .element {
+    flex: 0 0;
+  }
+  .title {
+    flex: 1 0;
+    margin: 0 8px;
+    font-weight: bold;
+  }
+  .actions {
+    display: flex;
+    float: right;
+
+    span {
+      padding: 0 0.2em;
+    }
+  }
+}

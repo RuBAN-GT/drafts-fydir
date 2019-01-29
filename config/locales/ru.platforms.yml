@@ -1,0 +1,8 @@
+ru:
+  actions:
+    platforms:
+      choice: Выберете платформу
+  template:
+    platforms:
+      all: Все плафтормы
+      item: Плафторма

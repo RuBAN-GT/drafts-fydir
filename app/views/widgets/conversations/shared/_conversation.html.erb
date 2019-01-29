@@ -1,0 +1,27 @@
+<div
+  class="ui element conversation <%= conversation.seen?(current_user) ? 'seen' : 'unseen' %> segment"
+  data-id="<%= conversation.id %>"
+>
+  <%= link_to widgets_conversation_messages_path(conversation), :class => 'link' do %>
+    <%= image_tag conversation.front_member(current_user.id)&.avatar, :class => "ui image avatar" %>
+    <div class="content">
+      <div class="title">
+        <%= conversation.title(current_user.id) %>
+      </div>
+      <% if conversation.messages.any? %>
+        <div class="message">
+          <span class="text"><%= truncate conversation.messages.first&.body, :length => 25 %></span>
+          <span class="date">(<%= time_ago_in_words conversation.messages.first&.created_at %> назад)</span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= link_to icon(:close),
+    widgets_conversation_path(conversation),
+    :method => :delete,
+    :title => t('actions.conversations.leave'),
+    :remote => true,
+    :class => :leave
+  %>
+</div>

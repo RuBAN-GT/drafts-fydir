@@ -1,0 +1,30 @@
+<% breadcrumb :users %>
+
+<h1 class="ui header"><%= t 'meta_tags.users.defaults.title' %></h1>
+
+<div class="ui mobile vertical reversed grid">
+  <div class="sixteen wide mobile sixteen wide tablet eleven wide computer column stickowner">
+    <% if @users.any? %>
+      <%= render 'web/users/shared/feed', :users => @users %>
+
+      <%= will_paginate @users, :inner_window => 1 %>
+    <% else %>
+      <div class="ui icon message">
+        <i class="users icon"></i>
+        <div class="content">
+          <h4 class="ui header"><%= t "template.empty" %></h4>
+          <p><%= t "users.template.empty" %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="sixteen wide mobile sixteen wide tablet five wide computer column">
+    <div class="ui not mobile sticky">
+      <%= render '/web/users/shared/filter' %>
+    </div>
+    <div class="ui only mobile">
+      <%= render '/web/users/shared/filter' %>
+    </div>
+  </div>
+</div>

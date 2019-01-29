@@ -1,0 +1,5 @@
+<div class="ui looking_requests divided items">
+  <% looking_requests.each do |request| %>
+      <%= render 'web/looking_requests/shared/item', :looking_request => request %>
+  <% end if defined?(looking_requests) && looking_requests.any? %>
+</div>

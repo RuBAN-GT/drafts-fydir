@@ -1,0 +1,9 @@
+<div class="textbox">
+  <%= form_for [:widgets, conversation, message], :remote => true, :autocomplete => :off, :html => {:class => ''} do |f| %>
+    <div class="textfield">
+      <%= f.text_field :body, :rows => 1, :placeholder => t('tips.messages.press') %>
+    </div>
+
+    <%= f.button icon(:send), :title => t('actions.messages.send'), :class => 'ui button circular icon mobile only' %>
+  <% end %>
+</div>

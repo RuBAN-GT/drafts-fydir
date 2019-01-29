@@ -1,0 +1,26 @@
+<h4 class="ui block header"><%= t 'template.filter' %></h4>
+
+<%= form_tag users_path, :method => :get, :class => 'ui form' do %>
+  <div class="field">
+    <%= label_tag :nickname, t('activerecord.attributes.user.nickname'), :class => 'only mobile' %>
+    <%= user_field_tag :nickname, params[:nickname] %>
+  </div>
+  <div class="field">
+    <%= label_tag :guardian_name, t('activerecord.attributes.user.guardian_name'), :class => 'only mobile' %>
+    <%= user_field_tag :guardian_name, params[:guardian_name], :icon => :gamepad %>
+  </div>
+  <div class="field">
+    <%= label_tag :platform, t('actions.platforms.choice'), :class => 'only mobile' %>
+    <%= platform_tag :platform %>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div class="field">
+    <%= button_tag "#{icon :search} #{t 'actions.search'}".html_safe, :value => :ok, :class => "ui icon labeled green fluid button" %>
+
+    <div class="ui center aligned basic nopadded segment">
+      <%= link_to "#{icon :undo} #{t 'actions.clear'}".html_safe, users_path %>
+    </div>
+  </div>
+<% end %>

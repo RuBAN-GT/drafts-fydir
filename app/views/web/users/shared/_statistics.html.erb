@@ -1,0 +1,74 @@
+<div class="ui grid">
+  <div class="sixteen wide mobile thirteen wide tablet thirteen ten wide computer column">
+    <table class="ui definition celled selectable striped table">
+      <tr>
+        <td class="collapsing"><%= t 'template.users.statistics.total_time' %></td>
+        <td><%= distance_of_time_in_words (user.guardian&.get_historical_stats_for_account&.mergedAllCharacters&.merged&.allTime&.secondsPlayed&.basic&.value || 0) %></td>
+      </tr>
+      <tr>
+        <td class="collapsing"><%= t 'template.users.statistics.pve_time' %></td>
+        <td><%= distance_of_time_in_words (user.guardian&.get_historical_stats_for_account&.mergedAllCharacters&.results&.allPvE&.allTime&.secondsPlayed&.basic&.value || 0) %></td>
+      </tr>
+      <tr>
+        <td class="collapsing"><%= t 'template.users.statistics.pvp_time' %></td>
+        <td><%= distance_of_time_in_words (user.guardian&.get_historical_stats_for_account&.mergedAllCharacters&.results&.allPvP&.allTime&.secondsPlayed&.basic&.value || 0) %></td>
+      </tr>
+      <tr>
+        <td class="collapsing"><%= t 'template.users.statistics.pve_kd' %></td>
+        <td><%= user.guardian.get_historical_stats_for_account.mergedAllCharacters.results.allPvE.allTime.killsDeathsRatio.basic.displayValue rescue 0 %></td>
+      </tr>
+      <tr>
+        <td class="collapsing"><%= t 'template.users.statistics.pvp_kd' %></td>
+        <td><%= user.guardian.get_historical_stats_for_account.mergedAllCharacters.results.allPvP.allTime.killsDeathsRatio.basic.displayValue rescue 0 %></td>
+      </tr>
+      <tr>
+        <td class="collapsing"><%= t 'template.users.statistics.max_light' %></td>
+        <td><%= user.guardian.get_historical_stats_for_account.mergedAllCharacters.merged.allTime.highestLightLevel.basic.displayValue.to_i + 1 rescue 0 %></td>
+      </tr>
+      <tr>
+        <td class="collapsing"><%= t 'template.users.statistics.grimoire' %></td>
+        <td><%= user.guardian.get_bungie_account.destinyAccounts.first.grimoireScore rescue 0 %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="sixteen wide mobile thirteen wide tablet thirteen six wide computer column">
+    <div class="guardian emblems">
+      <% 3.times do |i| %>
+        <%
+          character = user.guardian&.get_bungie_account&.destinyAccounts&.first&.characters[i]
+
+          next if character.nil?
+        %>
+        <a
+          href="<%= "https://www.bungie.net/en/Legend/Gear/#{user.membership_type}/#{user.guardian.destiny_membership_id}/#{character.characterId}" %>"
+          target="_blank"
+          data-id="<%= character.characterId %>"
+          class="ui character segment"
+          style="background-image: url(<%= bungie_uri(character.backgroundPath) %>);"
+          title="<%= t 'tips.users.show_character' %>"
+          tooltip="true"
+        >
+          <%= image_tag bungie_uri(character.emblemPath), :class => :emblem %>
+
+          <div class="info">
+            <div class="class">
+              <%= character.characterClass&.className %>
+            </div>
+            <div class="race">
+              <%= "#{character.race&.raceName} #{character.gender&.genderName}" %>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="level">
+              <%= character.level %>
+            </div>
+            <div class="light">
+              <%= "#{icon :light}#{character.powerLevel}".html_safe %>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+<% if @message.persisted? %>
+  messages.render("<%= j render '/widgets/messages/shared/message', :message => @message %>", "<%= @message.id %>");
+<% end %>

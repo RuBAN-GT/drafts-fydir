@@ -1,0 +1,78 @@
+ru:
+  actions:
+    looking_requests:
+      delete: Удалить запрос
+      edit: Обновить запрос
+      feed:
+        start: Обновление
+        stop: Остановка
+      new: Новый запрос
+  activerecord:
+    attributes:
+      looking_request:
+        created_at: Добавлено
+        description: Описание
+        experience: Опыт
+        looking_activity: Активность
+        looking_activity_id: Активность
+        looking_type: Тип поиска
+        microphone: Микрофон
+        min_light: Минимальный лайт
+        platform: Плафторма
+        platform_id: Плафторма
+    errors:
+      models:
+        looking_request:
+          attributes:
+            looking_count:
+              wrong: в файртиме от 1 до 6
+  flash:
+    looking_requests:
+      created: Ваш запрос опубликован.
+      destroyed: Ваш запрос удалён.
+      updated: Ваш запрос обновлён.
+      wrong: Что-то пошло не так, проверьте правильность заполненных полей.
+  params:
+    looking_requests:
+      description:
+        placeholder: Описание вашей заявки (только баунти, нужны хантеры и т.п.)
+      experience:
+        for:
+          every: Для всех
+          novice: Для новичков
+          sherpa: Для мастеров
+        placeholder: Игровой опыт
+        types:
+          every: Любой
+          novice: Новичок
+          sherpa: Мастер
+      looking_type:
+        search:
+          group: Группу
+          i_search: Ищу
+          member: Гардиана
+        types:
+          all: Все запросы
+          group: Поиск группы
+          member: Поиск гардиана
+      microphone:
+        placeholder: Требовать микрофон у гардианов
+        require: Требуется микрофон
+        types:
+          not_require: Микрофон не требуется
+          require: Требуется микрофон
+      min_light:
+        placeholder: Лайт
+  template:
+    looking_requests:
+      empty: Нет запросов
+      guardian: Гардиан
+      last: Последние запросы
+      more: Подробнее
+  tips:
+    looking_requests:
+      experience: Необходимый опыт
+      feed:
+        start: Обновлять ленту запросов
+        stop: Остановить обновление ленты запросов
+      min_light: Требуется минимальный лайт

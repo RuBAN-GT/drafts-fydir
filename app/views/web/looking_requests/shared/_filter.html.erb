@@ -1,0 +1,71 @@
+<h4 class="ui block header"><%= t 'template.filter' %></h4>
+
+<%= form_tag looking_requests_path, :method => :get, :class => 'ui form' do %>
+    <div class="field">
+      <%= label_tag :platform,
+        t('actions.platforms.choice'),
+        :class => 'only mobile'
+      %>
+      <%= platform_tag :platform %>
+    </div>
+    <div class="field">
+      <%= label_tag :looking_activity,
+        t('template.looking_activities.choice'),
+        :class => 'only mobile'
+      %>
+      <%= looking_activity_tag :looking_activity, :id => :slug %>
+    </div>
+    <div class="field">
+      <%= label_tag :looking_type,
+        t('activerecord.attributes.looking_request.looking_type'),
+        :class => 'only mobile'
+      %>
+      <%= looking_type_tag :looking_type %>
+    </div>
+    <div class="fields">
+      <div class="ten wide field">
+        <%= label_tag :experience,
+          t('activerecord.attributes.looking_request.experience'),
+          :class => 'only mobile'
+        %>
+        <%= experience_tag :experience, :class => :fluid %>
+      </div>
+      <div class="six wide field">
+        <%= label_tag :min_light,
+          t('activerecord.attributes.looking_request.min_light'),
+          :class => 'only mobile'
+        %>
+        <div class="ui left icon input">
+          <%= icon :light %>
+          <%= number_field_tag :min_light,
+            params[:min_light],
+            :min => 0,
+            :max => 400,
+            :placeholder => t('params.looking_requests.min_light.placeholder')
+          %>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui hidden only mobile divider"></div>
+
+    <div class="field">
+      <div class="ui toggle checkbox">
+        <%= check_box_tag :microphone, 1, (params[:microphone] == '1') %>
+        <%= label_tag :microphone, t('params.looking_requests.microphone.require') %>
+      </div>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div class="field">
+      <%= button_tag "#{icon :search} #{t 'actions.search'}".html_safe,
+        :value => :ok,
+        :class => "ui icon labeled green fluid button"
+      %>
+
+      <div class="ui center aligned basic nopadded segment">
+        <%= link_to "#{icon :undo} #{t 'actions.clear'}".html_safe, looking_requests_path %>
+      </div>
+    </div>
+<% end %>

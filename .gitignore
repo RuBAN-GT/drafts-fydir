@@ -1,0 +1,17 @@
+/.bundle
+/config/database.yml
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+/public/assets/*
+.byebug_history
+.vagrant
+.idea
+*.komodo*
+*.sublime*
+*.remote-sync*
+*.ftpconfig
+.tags*

@@ -1,0 +1,17 @@
+<div
+  class="ui modal looking_request new"
+  data-root-url="<%= looking_requests_path %>"
+  data-target-url="<%= new_looking_request_path %>"
+  data-target-title="<%= display_title %>"
+>
+  <%= icon(:close) %>
+  <div class="header"><%= t 'meta_tags.looking_requests.new.title' %></div>
+
+  <div class="content">
+    <%= render '/web/looking_requests/shared/form', looking_request: @looking_request %>
+  </div>
+
+  <div class="ui actions">
+    <%= button_tag "#{icon(:save)} #{t 'actions.save'}".html_safe, :class => "ui primary icon labeled button" %>
+  </div>
+</div>

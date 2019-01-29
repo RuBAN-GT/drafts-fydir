@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= display_meta_tags %>
+  <%= csrf_meta_tags %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= render '/web/layouts/shared/locales' %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'widgets/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'widgets/application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body
+  class="<%= params[:controller].gsub('/', '_') %>"
+  data-nickname="<%= current_user.nickname %>"
+>
+<div class="chatbox">
+  <%= render '/widgets/layouts/shared/toolbar' %>
+
+  <div class="body">
+    <div class="ui wrapper">
+      <div class="scrollbox">
+        <div class="content">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= target_scripts %>
+</body>
+</html>
